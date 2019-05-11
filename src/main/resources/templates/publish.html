@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>操作界面</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+</head>
+
+<style>
+    .article {
+        background-color: azure;
+        width: 1200px;
+        height: 100px;
+        margin-top: 20px;
+        margin-left: 100px;
+    }
+</style>
+
+<body>
+<a href="http://localhost:8080/publish">我的发布</a>
+<a href="http://localhost:8080/attention">我的关注</a>
+<a href="http://localhost:8080/myClue">我的线索</a>
+<a href="http://localhost:8080/newPublish">新建寻亲</a>
+<div>
+    <table border="1">
+        <tr>
+            <th>图片</th>
+            <th>标题</th>
+        </tr>
+        <tr  th:each="person,clueInfo : ${persons}" >
+            <td th:text="${person.image}"></td>
+            <td>
+                <img src="http://localhost:8080/getImage/3805" style="width: 60px;height: 60px"/>
+            </td>
+<!--            <th th:text="${infoStat.index}"></th>-->
+<!--            <th th:text="${infoStat.count}"></th>-->
+<!--            <th th:text="${infoStat.size}"></th>-->
+<!--            <th th:text="${infoStat.even}"></th>-->
+<!--            <th th:text="${infoStat.odd}"></th>-->
+<!--            <th th:text="${infoStat.first}"></th>-->
+<!--            <th th:text="${infoStat.last}"></th>-->
+        </tr>
+    </table>
+<!--    <div class="article">-->
+
+<!--    </div>-->
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarun.gohome.mapper.MissingpersonMapper">
+  <resultMap id="BaseResultMap" type="com.huarun.gohome.model.Missingperson">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="poston" jdbcType="VARCHAR" property="poston" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="isAddFace" jdbcType="TINYINT" property="isaddface" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, category, poston, detail, image, isAddFace, u_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from missingperson
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectValidImage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from missingperson where image is not null and image != ""
+  </select>
+  <select id="selectAddFace" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from missingperson where image is not null and image != "" and (isAddFace is null or isAddFace = 0)
+  </select>
+  <select id="getMaxId" resultType="java.lang.Integer">
+    select
+    max(id)
+    from missingperson
+  </select>
+  <select id="getMissingPersonByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from missingperson where u_id is not null and u_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from missingperson
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.huarun.gohome.model.Missingperson" useGeneratedKeys="true">
+    insert into missingperson (title, category, poston, 
+      detail, image, isAddFace, 
+      u_id)
+    values (#{title,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{poston,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{isaddface,jdbcType=TINYINT}, 
+      #{uId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.huarun.gohome.model.Missingperson" useGeneratedKeys="true">
+    insert into missingperson
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="poston != null">
+        poston,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="isaddface != null">
+        isAddFace,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="poston != null">
+        #{poston,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isaddface != null">
+        #{isaddface,jdbcType=TINYINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarun.gohome.model.Missingperson">
+    update missingperson
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="poston != null">
+        poston = #{poston,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isaddface != null">
+        isAddFace = #{isaddface,jdbcType=TINYINT},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarun.gohome.model.Missingperson">
+    update missingperson
+    set title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      poston = #{poston,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      isAddFace = #{isaddface,jdbcType=TINYINT},
+      u_id = #{uId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

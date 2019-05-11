@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarun.gohome.mapper.ClueInfoMapper">
+  <resultMap id="BaseResultMap" type="com.huarun.gohome.model.ClueInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mp_id" jdbcType="INTEGER" property="mpId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="lose_name" jdbcType="VARCHAR" property="loseName" />
+    <result column="lose_iphone" jdbcType="VARCHAR" property="loseIphone" />
+    <result column="lose_sex" jdbcType="VARCHAR" property="loseSex" />
+    <result column="lose_address" jdbcType="VARCHAR" property="loseAddress" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="imageUrl" jdbcType="VARCHAR" property="imageurl" />
+    <result column="confidence" jdbcType="VARCHAR" property="confidence" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mp_id, u_id, lose_name, lose_iphone, lose_sex, lose_address, description, status, 
+    imageUrl, confidence
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from clue_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMPId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from clue_info
+    where mp_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getClues" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from clue_info
+    where u_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clue_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.huarun.gohome.model.ClueInfo" useGeneratedKeys="true">
+    insert into clue_info (mp_id, u_id, lose_name, 
+      lose_iphone, lose_sex, lose_address, 
+      description, status, imageUrl, 
+      confidence)
+    values (#{mpId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{loseName,jdbcType=VARCHAR}, 
+      #{loseIphone,jdbcType=VARCHAR}, #{loseSex,jdbcType=VARCHAR}, #{loseAddress,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{imageurl,jdbcType=VARCHAR}, 
+      #{confidence,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.huarun.gohome.model.ClueInfo" useGeneratedKeys="true">
+    insert into clue_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mpId != null">
+        mp_id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="loseName != null">
+        lose_name,
+      </if>
+      <if test="loseIphone != null">
+        lose_iphone,
+      </if>
+      <if test="loseSex != null">
+        lose_sex,
+      </if>
+      <if test="loseAddress != null">
+        lose_address,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="imageurl != null">
+        imageUrl,
+      </if>
+      <if test="confidence != null">
+        confidence,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mpId != null">
+        #{mpId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="loseName != null">
+        #{loseName,jdbcType=VARCHAR},
+      </if>
+      <if test="loseIphone != null">
+        #{loseIphone,jdbcType=VARCHAR},
+      </if>
+      <if test="loseSex != null">
+        #{loseSex,jdbcType=VARCHAR},
+      </if>
+      <if test="loseAddress != null">
+        #{loseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null">
+        #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="confidence != null">
+        #{confidence,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarun.gohome.model.ClueInfo">
+    update clue_info
+    <set>
+      <if test="mpId != null">
+        mp_id = #{mpId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="loseName != null">
+        lose_name = #{loseName,jdbcType=VARCHAR},
+      </if>
+      <if test="loseIphone != null">
+        lose_iphone = #{loseIphone,jdbcType=VARCHAR},
+      </if>
+      <if test="loseSex != null">
+        lose_sex = #{loseSex,jdbcType=VARCHAR},
+      </if>
+      <if test="loseAddress != null">
+        lose_address = #{loseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null">
+        imageUrl = #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="confidence != null">
+        confidence = #{confidence,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarun.gohome.model.ClueInfo">
+    update clue_info
+    set mp_id = #{mpId,jdbcType=INTEGER},
+      u_id = #{uId,jdbcType=INTEGER},
+      lose_name = #{loseName,jdbcType=VARCHAR},
+      lose_iphone = #{loseIphone,jdbcType=VARCHAR},
+      lose_sex = #{loseSex,jdbcType=VARCHAR},
+      lose_address = #{loseAddress,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      imageUrl = #{imageurl,jdbcType=VARCHAR},
+      confidence = #{confidence,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

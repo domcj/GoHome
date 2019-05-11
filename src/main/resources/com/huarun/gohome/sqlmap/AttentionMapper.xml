@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarun.gohome.mapper.AttentionMapper">
+  <resultMap id="BaseResultMap" type="com.huarun.gohome.model.Attention">
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="mp_id" jdbcType="INTEGER" property="mpId" />
+  </resultMap>
+  <select id="getAttentionsByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select u_id, mp_id
+    from clue_info
+    where u_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.huarun.gohome.model.Attention">
+    insert into attention (u_id, mp_id)
+    values (#{uId,jdbcType=INTEGER}, #{mpId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarun.gohome.model.Attention">
+    insert into attention
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="mpId != null">
+        mp_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="mpId != null">
+        #{mpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <delete id="removeAttention" parameterType="com.huarun.gohome.model.Attention">
+      delete from attention where u_id = #{userId,jdbcType=INTEGER} and mp_id = #{mpId,jdbcType=INTEGER}
+  </delete>
+</mapper>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+</head>
+
+<style>
+    .txt_login {
+        background-color: azure;
+        width: 400px;
+        height: 200px;
+        margin-top: 100px;
+        margin-left: 400px;
+    }
+</style>
+
+<body>
+<div class="txt_login">
+    <form th:action="@{/loginHandle}" method="post">
+        <table border="1" style="height:200px;width:400px">
+            <tr>
+                <td >用户名:</td>
+                <td>
+                    <input id="user_name" name="username" type="text" placeholder="用户名" />
+                </td>
+            </tr>
+            <tr>
+                <td>用户密码:</td>
+                <td>
+                    <input id="password" name="password" type="password" placeholder="密码" aria-describedby="basic-addon2" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit" style="width:50px;">登 录</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
