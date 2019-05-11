@@ -11,6 +11,8 @@ public interface MissingpersonService {
 
 	List<Missingperson> selectValidImage();
 
+	List<Missingperson> selectAttention(Integer userId);
+
 	Missingperson selectByPrimaryKey(Integer id);
 
 	int updateByPrimaryKeySelective(Missingperson record);

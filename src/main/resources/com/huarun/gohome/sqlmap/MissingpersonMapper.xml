@@ -40,6 +40,11 @@
     <include refid="Base_Column_List" />
     from missingperson where u_id is not null and u_id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAttention" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from missingperson where image is not null and image != "" and (u_id is null or u_id != #{userId,jdbcType=INTEGER})
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from missingperson
     where id = #{id,jdbcType=INTEGER}

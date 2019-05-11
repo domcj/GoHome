@@ -7,7 +7,7 @@
   </resultMap>
   <select id="getAttentionsByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select u_id, mp_id
-    from clue_info
+    from attention
     where u_id = #{userId,jdbcType=INTEGER}
   </select>
   <insert id="insert" parameterType="com.huarun.gohome.model.Attention">

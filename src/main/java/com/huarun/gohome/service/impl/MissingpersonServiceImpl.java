@@ -40,6 +40,15 @@ public class MissingpersonServiceImpl implements MissingpersonService {
 	}
 
 	@Override
+	public List<Missingperson> selectAttention(Integer userId) {
+		List<Missingperson> records = missingpersonMapper.selectAttention(userId);
+		for (Missingperson record : records) {
+			supplement(record);
+		}
+		return records;
+	}
+
+	@Override
 	public Missingperson selectByPrimaryKey(Integer id) {
 		Missingperson missingperson = missingpersonMapper.selectByPrimaryKey(id);
 		supplement(missingperson);
@@ -81,6 +90,9 @@ public class MissingpersonServiceImpl implements MissingpersonService {
 	}
 
 	private void supplement(Missingperson record) {
+		if (record==null) {
+			return;
+		}
 		List<ClueInfo> clueInfos = clueInfoMapper.selectByMPId(record.getId());
 		for (ClueInfo clueInfo : clueInfos) {
 			if (StringUtils.isNotEmpty(clueInfo.getImageurl())) {

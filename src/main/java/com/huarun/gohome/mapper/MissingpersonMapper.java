@@ -19,6 +19,8 @@ public interface MissingpersonMapper {
 
 	List<Missingperson> selectValidImage();
 
+	List<Missingperson> selectAttention(Integer userId);
+
     List<Missingperson> selectAddFace();
 
     Integer getMaxId();

@@ -82,4 +82,15 @@ public class AttentionController {
 		baseResp.setResult(BaseResp.SUCCESS);
 		return baseResp;
 	}
+
+	@RequestMapping("/findAttentions")
+	public List<Missingperson> addAttention(HttpServletRequest request, @RequestParam(required=false) Integer pageIndex, @RequestParam(required=false) Integer pageSize) {
+		String userId = request.getHeader("user");
+		if (pageIndex==null||pageSize==null) {
+			pageIndex=1;
+			pageSize=10;
+		}
+		PageHelper.startPage(pageIndex, pageSize);
+		return missingpersonService.selectAttention(Integer.valueOf(userId));
+	}
 }
