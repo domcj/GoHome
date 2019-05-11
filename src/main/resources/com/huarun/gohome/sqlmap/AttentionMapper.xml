@@ -34,6 +34,6 @@
     </trim>
   </insert>
   <delete id="removeAttention" parameterType="com.huarun.gohome.model.Attention">
-      delete from attention where u_id = #{userId,jdbcType=INTEGER} and mp_id = #{mpId,jdbcType=INTEGER}
+      delete from attention where u_id = #{uId,jdbcType=INTEGER} and mp_id = #{mpId,jdbcType=INTEGER}
   </delete>
 </mapper>

@@ -42,8 +42,9 @@
   </select>
   <select id="selectAttention" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
-    from missingperson where image is not null and image != "" and (u_id is null or u_id != #{userId,jdbcType=INTEGER})
+    m.id, m.title, m.category, m.poston, m.detail, m.image, m.isAddFace, m.u_id
+    from missingperson m where m.image is not null and m.image != "" and (m.u_id is null or m.u_id != #{userId,jdbcType=INTEGER})
+     and m.id not in (select 1 from attention a where m.id=a.mp_id)
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from missingperson

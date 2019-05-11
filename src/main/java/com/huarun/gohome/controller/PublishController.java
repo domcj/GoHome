@@ -109,22 +109,6 @@ public class PublishController {
 			baseResp.setErrMsg("未获取到有效图片");
 			return baseResp;
 		}
-		Integer maxId = missingpersonService.getMaxId();
-		if (maxId==null) {
-			baseResp.setErrMsg("获取id异常");
-			return baseResp;
-		}
-		maxId++;
-		String result = null;
-		try {
-			result = facePPservice.addFace(faceSetName, files, maxId+"");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (!"人脸添加成功".equals(result)) {
-			baseResp.setErrMsg(result);
-			return baseResp;
-		}
 		Missingperson missingperson = new Missingperson();
 		missingperson.setCategory(category);
 		missingperson.setTitle(title);
@@ -133,6 +117,19 @@ public class PublishController {
 		missingperson.setPoston(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()));
 		missingperson.setImage(imgName);
 		missingpersonService.insert(missingperson);
+
+		Integer maxId = missingperson.getId();
+		String result = null;
+		try {
+			result = facePPservice.addFace(faceSetName, files, maxId+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (!"人脸添加成功".equals(result)) {
+			missingpersonService.deleteByPrimaryKey(maxId);
+			baseResp.setErrMsg(result);
+			return baseResp;
+		}
 		baseResp.setResult(BaseResp.SUCCESS);
 		return baseResp;
 
