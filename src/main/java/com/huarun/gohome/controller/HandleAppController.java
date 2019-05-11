@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -83,7 +84,7 @@ public class HandleAppController {
 //	}
 
 	@RequestMapping("/addAppClue/{id}")
-	public BaseResp addClue(@RequestParam Integer id, @RequestParam(required = false) String loseName, @RequestParam(required = false) String loseIphone, @RequestParam(required = false) String loseSex, @RequestParam(required = false) String loseAddress, @RequestParam(required = false) String description, @RequestParam(required = false) String confidence, @RequestParam String imgUrl) {
+	public BaseResp addClue(@PathVariable Integer id, @RequestParam(required = false) String loseName, @RequestParam(required = false) String loseIphone, @RequestParam(required = false) String loseSex, @RequestParam(required = false) String loseAddress, @RequestParam(required = false) String description, @RequestParam(required = false) String confidence, @RequestParam String imgUrl) {
 		BaseResp baseResp = new BaseResp();
 		String imgName = DownFileUtil.getFileName(imgUrl);
 		byte[] files = DownFileUtil.loadImage(imgName, "1");
