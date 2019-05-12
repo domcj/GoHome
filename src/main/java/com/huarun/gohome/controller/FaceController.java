@@ -44,7 +44,7 @@ public class FaceController {
 		try {
 			result = facePPservice.getFaceSetInfo(faceSetName);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("error", e);
 			return "获取所有face信息异常";
 		}
 		return result;
@@ -57,7 +57,7 @@ public class FaceController {
 		try {
 			result = facePPservice.getFaceSets();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("error", e);
 			return null;
 		}
 		return result;
@@ -70,7 +70,7 @@ public class FaceController {
 		try {
 			result = facePPservice.getFaceInfo(faceToken);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("error", e);
 			return "获取face信息异常";
 		}
 		return result;
@@ -83,7 +83,7 @@ public class FaceController {
 		try {
 			result = facePPservice.createFaceSet(faseSet);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("error", e);
 			return null;
 		}
 		return result;
@@ -96,7 +96,7 @@ public class FaceController {
 		try {
 			result = facePPservice.deleteFaces(faceSetName, "RemoveAllFaceTokens");
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("error", e);
 			return null;
 		}
 		return result;

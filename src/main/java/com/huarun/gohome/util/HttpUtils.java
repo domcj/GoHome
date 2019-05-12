@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -12,6 +15,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpUtils {
+
+    private static Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
     private static final MediaType MediaType_APPLICATION = MediaType.parse("application/octet-stream");
 
@@ -51,7 +56,7 @@ public class HttpUtils {
             // 发送请求
             return doPost(new Request.Builder().url(url).post(requestBody).build());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("error", e);
         }
         return null;
     }
@@ -100,7 +105,7 @@ public class HttpUtils {
             response = okHttpClient.newCall(request).execute();
             result = response.body().string();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("error", e);
             return null;
         }
         return result;

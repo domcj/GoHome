@@ -29,7 +29,7 @@ import com.huarun.gohome.util.DownFileUtil;
 public class HandleAppController {
 
 	public volatile int inc = 0;
-	private Logger logger = LoggerFactory.getLogger(HandleAppController.class);
+	private static Logger logger = LoggerFactory.getLogger(HandleAppController.class);
 	@Resource
 	private MissingpersonService missingpersonService;
 	@Resource

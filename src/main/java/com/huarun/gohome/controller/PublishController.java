@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +30,12 @@ import com.huarun.gohome.service.ClueInfoService;
 import com.huarun.gohome.service.FacePPservice;
 import com.huarun.gohome.service.MissingpersonService;
 import com.huarun.gohome.util.DownFileUtil;
+import com.huarun.gohome.util.HttpUtils;
 
 @RestController
 public class PublishController {
+
+	private static Logger logger = LoggerFactory.getLogger(PublishController.class);
 
 	private static String imgBasePath = "D:\\picture\\";
 	private static String searchBasePath = "D:\\searchPicture\\";
@@ -113,7 +118,7 @@ public class PublishController {
 		try {
 			result = facePPservice.addFace(faceSetName, files, maxId+"");
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("error", e);
 		}
 		if (!"人脸添加成功".equals(result)) {
 			missingpersonService.deleteByPrimaryKey(maxId);
@@ -146,13 +151,13 @@ public class PublishController {
 			}
 			sos.flush();
 		}catch (Exception e){
-			e.printStackTrace();
+			logger.error("error", e);
 		}finally {
 			try {
 				sos.close();
 				ips.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error("error", e);
 			}
 		}
 		return null;
