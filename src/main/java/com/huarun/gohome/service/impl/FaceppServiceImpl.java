@@ -1,12 +1,9 @@
 package com.huarun.gohome.service.impl;
 
-import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -14,13 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
-import com.huarun.gohome.service.FacePPservice;
-import com.huarun.gohome.bean.FacePPApi;
 import com.huarun.gohome.bean.DetectResponse;
 import com.huarun.gohome.bean.FaceDetailResponse;
+import com.huarun.gohome.bean.FacePPApi;
 import com.huarun.gohome.bean.FaceSet;
 import com.huarun.gohome.bean.FaceSetAddResponse;
 import com.huarun.gohome.bean.FaceSetCreatResponse;
@@ -30,6 +25,7 @@ import com.huarun.gohome.bean.FaceSetRemoveResponse;
 import com.huarun.gohome.bean.FaceToken;
 import com.huarun.gohome.bean.SearchFaceResult;
 import com.huarun.gohome.bean.SearchResponse;
+import com.huarun.gohome.service.FacePPservice;
 
 import sun.misc.BASE64Encoder;
 

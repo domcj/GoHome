@@ -46,14 +46,6 @@ public class AttentionController {
 			Missingperson missingperson = missingpersonService.selectByPrimaryKey(attention.getMpId());
 			if (missingperson!=null) {
 				missingpeoples.add(missingperson);
-//				List<ClueInfo> clueInfos = clueInfoService.selectByMPId(missingperson.getId());
-//				for (ClueInfo clueInfo : clueInfos) {
-//					if (StringUtils.isNotEmpty(clueInfo.getImageurl())) {
-//						clueInfo.setImageurl(prefix+clueInfo.getImageurl()+"/1");
-//					}
-//				}
-//				missingperson.setClueInfos(clueInfos);
-//				missingperson.setImage(prefix+missingperson.getImage()+"/0");
 			}
 		}
 		return missingpeoples;

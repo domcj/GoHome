@@ -54,16 +54,6 @@ public class PublishController {
 		}
 		PageHelper.startPage(pageIndex, pageSize);
 		List<Missingperson> missingpeoples = missingpersonService.getMissingPersonByUserId(Integer.valueOf(userId));
-//		for (Missingperson missingperson : missingpeoples) {
-//			List<ClueInfo> clueInfos = clueInfoService.selectByMPId(missingperson.getId());
-//			for (ClueInfo clueInfo : clueInfos) {
-//				if (StringUtils.isNotEmpty(clueInfo.getImageurl())) {
-//					clueInfo.setImageurl(prefix+clueInfo.getImageurl()+"/1");
-//				}
-//			}
-//			missingperson.setClueInfos(clueInfos);
-//			missingperson.setImage(prefix+missingperson.getImage()+"/0");
-//		}
 		return missingpeoples;
 	}
 
@@ -171,14 +161,6 @@ public class PublishController {
 	@RequestMapping("/getPublishById/{id}")
 	public Missingperson getPublishById(@PathVariable Integer id) {
 		Missingperson missingperson = missingpersonService.selectByPrimaryKey(id);
-//		List<ClueInfo> clueInfos = clueInfoService.selectByMPId(missingperson.getId());
-//		for (ClueInfo clueInfo : clueInfos) {
-//			if (StringUtils.isNotEmpty(clueInfo.getImageurl())) {
-//				clueInfo.setImageurl(prefix+clueInfo.getImageurl()+"/1");
-//			}
-//		}
-//		missingperson.setClueInfos(clueInfos);
-//		missingperson.setImage(prefix+missingperson.getImage()+"/0");
 		return missingperson;
 	}
 

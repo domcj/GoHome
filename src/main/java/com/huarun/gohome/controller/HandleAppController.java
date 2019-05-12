@@ -55,34 +55,6 @@ public class HandleAppController {
 		return missingpersons;
 	}
 
-//	@RequestMapping("/downImage")
-//	public List<Missingperson> downImage() {
-//		ExecutorService service = Executors.newFixedThreadPool(6);
-//		List<Missingperson> missingpersons = missingpersonService.selectValidImage();
-//		for (Missingperson missingperson : missingpersons) {
-//			service.submit(new Runnable() {
-//				@Override
-//				public void run() {
-//					if (missingperson==null||StringUtils.isEmpty(missingperson.getImage())) {
-//						return;
-//					}
-//					String image = missingperson.getImage();
-//					String[] split = image.split("/");
-//					String fileName = split[split.length - 1];
-//					String fileprox = ".jpg";
-//					if (image.contains("png"))  {
-//						fileprox = ".png";
-//					}
-//					String filePath = "D:\\picture\\"+inc+fileprox;
-//					DownFileUtil.downloadPicture(image, filePath);
-//					inc++;
-//				}
-//			});
-//		}
-//		System.out.println(missingpersons.size());
-//		return missingpersons;
-//	}
-
 	@RequestMapping("/addAppClue/{id}")
 	public BaseResp addClue(@PathVariable Integer id, @RequestParam(required = false) String loseName, @RequestParam(required = false) String loseIphone, @RequestParam(required = false) String loseSex, @RequestParam(required = false) String loseAddress, @RequestParam(required = false) String description, @RequestParam(required = false) String confidence, @RequestParam String imgUrl) {
 		BaseResp baseResp = new BaseResp();
