@@ -25,6 +25,8 @@ public class ClueInfo implements Serializable {
 
     private String confidence;
 
+    private Missingperson  missingperson;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -113,5 +115,13 @@ public class ClueInfo implements Serializable {
 
     public void setConfidence(String confidence) {
         this.confidence = confidence == null ? null : confidence.trim();
+    }
+
+    public Missingperson getMissingperson() {
+        return missingperson;
+    }
+
+    public void setMissingperson(Missingperson missingperson) {
+        this.missingperson = missingperson;
     }
 }

@@ -22,17 +22,17 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
 		InterceptorRegistration addInterceptor = registry.addInterceptor(new HandlerInterceptorAdapter() {
 			@Override
 			public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-				for (String str : suffix) {
-					if (request.getRequestURI().contains(str)) {
-						return true;
-					}
-				}
-				String userId = request.getHeader("user");
-				if (userId!=null) {
+			for (String str : suffix) {
+				if (request.getRequestURI().contains(str)) {
 					return true;
 				}
-				response.setStatus(403);
-				return false;
+			}
+			String userId = request.getHeader("user");
+			if (userId!=null) {
+				return true;
+			}
+			response.setStatus(403);
+			return false;
 			}
 		});
 		addInterceptor.excludePathPatterns("/error");

@@ -58,5 +58,5 @@ import com.huarun.gohome.bean.FaceSetRemoveResponse;
 	 */
 	public String addFace(String outerId, byte[] buff, String userId);
 
-	public Map<String, String> faceSearch(byte[] file);
+	public Map<String, String> faceSearch(byte[] file, String outId);
 }
