@@ -25,7 +25,7 @@ public class App {
 
 				ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/gohome/index.html");
 
-				container.addErrorPages(error404Page);
+//				container.addErrorPages(error404Page);
 			}
 		};
 	}
