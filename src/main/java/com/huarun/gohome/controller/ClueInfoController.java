@@ -17,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.PageHelper;
 import com.huarun.gohome.mapper.ClueInfoMapper;
 import com.huarun.gohome.model.ClueInfo;
+import com.huarun.gohome.model.Missingperson;
 import com.huarun.gohome.response.BaseResp;
 import com.huarun.gohome.service.FacePPservice;
+import com.huarun.gohome.service.MissingpersonService;
 import com.huarun.gohome.util.DownFileUtil;
 
 @RestController
@@ -28,8 +30,12 @@ public class ClueInfoController {
 	private ClueInfoMapper clueInfoMapper;
 	@Resource
 	private FacePPservice facePPservice;
+	@Resource
+	private MissingpersonService missingpersonService;
 	@Value("${image.prefix}")
 	private String prefix;
+	@Value("${facepp.faceSetName}")
+	private String faceSetName;
 
 	@RequestMapping("/uploadSearch")
 	public BaseResp upload(@RequestParam MultipartFile file) {
@@ -59,7 +65,7 @@ public class ClueInfoController {
 			baseResp.setErrMsg("图片不能为空");
 			return baseResp;
 		}
-		Map<String, String> reulstMap = facePPservice.faceSearch(files);
+		Map<String, String> reulstMap = facePPservice.faceSearch(files, faceSetName);
 		if (reulstMap.get("error")!=null) {
 			baseResp.setErrMsg(reulstMap.get("error"));
 			return baseResp;
@@ -94,6 +100,10 @@ public class ClueInfoController {
 		for (ClueInfo clueInfo : clueInfos) {
 			if (StringUtils.isNotEmpty(clueInfo.getImageurl())) {
 				clueInfo.setImageurl(prefix+clueInfo.getImageurl()+"/1");
+			}
+			if (clueInfo.getMpId()!=null) {
+				Missingperson missingperson = missingpersonService.selectByPrimaryKey(clueInfo.getMpId());
+				clueInfo.setMissingperson(missingperson);
 			}
 		}
 		return clueInfos;

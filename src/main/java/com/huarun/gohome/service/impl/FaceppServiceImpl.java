@@ -186,7 +186,7 @@ public class FaceppServiceImpl implements FacePPservice {
     }
 
     @Override
-    public Map<String, String> faceSearch(byte[] bytes) {
+    public Map<String, String> faceSearch(byte[] bytes, String outerId) {
         Map<String, String> resultMap = new HashMap<>();
         String faceToken = this.getFaceToken(bytes);
         if (faceToken==null) {
@@ -200,13 +200,15 @@ public class FaceppServiceImpl implements FacePPservice {
             resultMap.put("error", "只支持单个人脸检测");
             return resultMap;
         }
-        List<SearchFaceResult> results = this.searchFaceByFaceToken(faceToken, faceSetName);
-//        if (CollectionUtils.isEmpty(results)) {
-//            return "未搜索到相似人脸";
-//        }
-//        if (results.get(0).getConfidence()<confidence) {
-//            return "人脸相似度低于指定值，不匹配";
-//        }
+        List<SearchFaceResult> results = this.searchFaceByFaceToken(faceToken, outerId);
+        if (CollectionUtils.isEmpty(results)) {
+            resultMap.put("error", "未搜索到相似人脸");
+            return resultMap;
+        }
+        if (results.get(0).getConfidence()<confidence) {
+            resultMap.put("error", "未搜索到相似人脸");
+            return resultMap;
+        }
         resultMap.put("userId", results.get(0).getUser_id());
         resultMap.put("confidence", results.get(0).getConfidence()+"");
         return resultMap;
